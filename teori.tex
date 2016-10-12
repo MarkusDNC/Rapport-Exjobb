@@ -1,0 +1,39 @@
+\chapter{TEORI}
+\thispagestyle{fancy}
+
+\section{Internet Of Things}
+\ac{IoT} handlar om hur saker, bland annat i vår vardag, blir uppkopplade till Internet. I dag finns det en uppsjö av uppkopplade enheter för hemmet t\,ex lampor, hemövervakning, kylskåp och lås. Men inte bara våra hem blir uppkopplade utan även våra bilar. Exempel på detta är biltillverkaren Tesla som skickar ut uppdateringar i mjukvaran till deras kunders bilar och därmed kan erbjuda förbättringar och nya funktioner utan att kunden behöver göra något\footnote{\url{https://www.wired.com/insights/2014/02/teslas-air-fix-best-example-yet-internet-things/}}.
+
+Innebörden är helt enkelt att sakerna i vår omgivning blir mer och mer uppkopplade till ett nätverk och kan interagera med användaren och andra noder. Mitt i allt detta finns nästan alltid en molntjänst (Cloud computing) som hanterar den massiva mängd data som genereras av alla dessa noder.
+
+\section{Distribuerade system}
+\begin{displayquote} \emph{Ett distribuerat system är en samling av oberoende datorer som visas för sina användare som ett enda sammanhängande system}.\\(Tanenbaum and Steen, 2007, s. 2)\cite{Tanenbaum}
+
+\end{displayquote}
+
+\section{Cloud computing}
+Cloud computing, på svenska datormoln, är ett begrepp som innefattar datorberäkningar som erbjuds över Internet. Detta kan vara lagring av data eller tunga databeräkningar som ofta sköts av kraftiga servers som befinner sig på en helt annan plats än användaren. Exempel på lagringstjänster kan vara välkända tjänster så som Dropbox, Google Drive och Apple iCloud. För mer skräddasydda tjänster finns t\,ex Amazon S3.
+
+\subsection{Software as a Service}
+\ac{SaaS}\cite{cloud_computing} är en tjänst som erbjuder användaren att köra applikationer som tillhandahålls åt användaren på en molntjänst. Användaren kan då använda applikationen via en tunn klient så som en webbläsare eller lättare programvara. Exempel på detta kan vara webbmail eller kontorsprogram så som Google Docs. Det enda som då krävs av användaren är t\,ex en webbläsare då exekvering och lagring av applikationen sker i molntjänsten och inte lokalt på användarens dator bortsett från begränsade användarspecifika inställningar och funktioner.
+
+\subsection{Platform as a Service}
+\ac{PaaS}\cite{cloud_computing} är en tjänst som erbjuder användaren att på en plattform applicera och exekvera sin egen eller någon annans programvara i en molntjänst. Dock styr inte användaren något av det underliggande lagret så som operativsystem, lagring och nätverk utan bara konfigurationen av sin egen applikation. 
+
+\subsection{Infrastructure as a Service}
+\ac{IaaS}\cite{cloud_computing} är en tjänst som erbjuder användaren total kontroll över sin instans av molntjänsten. Leverantören av molntjänsten tillhandahåller processor, minne, lagring och övriga kritiska komponenter och tjänster nödvändiga för att användaren skall kunna installera programvara, både i form av operativsystem och applikationer. Användaren har inte kontroll över underliggande molnstruktur men styr över operativsystem, lagring, applikationer och konfigurationer så som brandvägg och portar.
+
+\section{Webbsystem}
+\subsection{Säkerhet}
+Vid utveckling av publika webbsystem finns en rad problem och säkerhetsfrågor som man bör vara medveten om. Det handlar både om att skydda systemets data, men även användarens integritet och dennes data. Systemets data kan vara känsliga uppgifter i en databas såsom medicinska journaler och personuppgifter. 
+
+SQL Injections är ett vanligt sätt för en illasinnad användare att utnyttja för att komma över data från en databas kopplad till exempelvis en hemsida. Detta kan ha förödande konsekvenser för den personliga integriteten men även ett företags affärsmodell och trovärdighet kan komma att frågasättas.
+
+
+\ac{XSS} är en teknik för angripare att köra skadlig kod i offrets webbläsare. Detta kan ske om en användares input renderas direkt i webbläsaren. Den skadliga koden kan då ha tillgång till samma objekt som resten av hemsidan, såsom session cookies, med vilka angriparen kan utge sig för att vara offret.
+
+\ac{CSRF} är en metod för en tredjeparts hemsida att sända förfrågningar till målsidan (exempelvis en bank) genom att använda målsidans cookies och session. Detta kan ske om användaren exempelvis är inloggad på sin bank i en flik i webbläsaren och med en annan flik besöker en illvillig hemsida.
+\subsection{Ramverk för webbutveckling}
+
+
+\ac{WAF} är ramverk som ofta är baserade på \ac{MVC}, skapade för att underlätta utvecklandet av webbsystem\cite{waf} och webbapplikationer. Avsikten med dessa är att utvecklaren inte skall behöva fokusera på vanligt förekommande implementationer av funktioner och säkerhet. På så sätt behöver användaren av ramverket inte lägga tid på att t\,ex skydda sin databas mot SQL injections och \ac{XSS} utan detta sköts istället av ramverket.

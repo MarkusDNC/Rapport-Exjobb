@@ -1,0 +1,38 @@
+\chapter{INLEDNING}
+\thispagestyle{fancy}
+Samhället går mot att fler och fler enheter blir uppkopplade mot internet, vilket ger dem förmågan att kommunicera med varandra och kraftfullare beräkningssystem. Detta öppnar upp för stora möjligheter inom branscher så som sjukvård, äldrevård och hemautomation. Enligt en prognos utförd av IDC beräknas det att till 2020 kommer marknaden för IoT vara värd 1\,700 miljarder dollar. 2021 beräknar telekommunikationsföretaget Ericsson att det kommer finnas 28 miljarder uppkopplade enheter\footnote{\url{http://spectrum.ieee.org/tech-talk/telecom/internet/popular-internet-of-things-forecast-of-50-billion-devices-by-2020-is-outdated}}. Beroende på källa kan denna siffra variera kraftigt särskilt då vissa inte innefattar mobiltelefoner och datorer. I en tidigare uppskattning av Ericsson räknade de med 50 miljarder uppkopplade enheter 2020, en siffra de nu har sänkt.
+
+Raytelligence vill vara del i denna utveckling och koppla upp sin radargivare för att möjliggöra bredare innovation inom radarområdet. Detta projekt kommer därför utvärdera möjligheten att skapa en tjänst som underlättar för ingenjörer och utvecklare att skapa applikationer som utnyttjar radargivaren via en molntjänst.
+
+\section{Syfte och mål}
+Syftet med projektet är att skapa ett system för enklare utveckling av radarapplikationer. Detta system skall möjliggöra kommunikation mellan radargivare, molntjänst och mobilapplikation. Systemet kommer utgöra en bas för utvecklare att bygga på, vilken ska låta ingenjörer, forskare och utvecklare implementera egna molnbaserade lösningar med radargivaren. 
+
+Målet är skapa ett system mellan en eller flera radarsensorer, en molntjänst samt en mobilapplikation. Användaren ska kunna registrera sig själv och sin(a) radargivare på en hemsida, och sedan implementera egna applikationer med sin(a) radargivare. Radargivaren är tänkt att kunna utföra en viss del av beräkningarna på sitt eget kort men även kunna avlastas genom att utföra större beräkningar i en molntjänst.
+
+\section{Frågeställning}
+\vspace{3mm}
+
+\subsection*{Bakgrund och teori}
+\begin{itemize}
+    \item Vilka produkter och tjänster finns på marknaden idag som motsvarar detta projekt?
+\end{itemize}
+
+\subsection*{Utbildningsfas}
+
+\begin{itemize}
+    \item Vilket/vilka programmeringsspråk skall användas för att lösa uppgiften?
+    \item Vilka kommunikationsmetoder behöver användas för att erbjuda ett robust system?
+    \item Hur binder slutanvändaren en specifik givare till en specifik applikation?
+    \item Vad behöver systemets publika \ac{API} innehålla för att kunna skapa den grundläggande applikation som avses ingå  projektet? 
+\end{itemize}
+
+\section{Avgränsningar}
+Projekt av denna karaktär väcker ofta frågor om personlig integritet och säkerhet. Projektet kommer att förbereda för en säker miljö, men ingen extra implementation av säkerhetsåtgärder kommer att ske. 
+
+På grund av projektets omfattning  kommer bibliotek för signalbehandling endast att inkluderas om tid finns samt endast ett begränsat \ac{API} kommer att erbjudas. Radarapplikationen som utvecklas i projektet kommer därför att vara en grundläggande applikation för att bevisa funktionaliteten i systemet. 
+
+Endast ett programmeringsspråk kommer att stödjas för användarens applikationer där koden ligger i en (1) fil. 
+
+I ett inledande skede skall en radarenhet endast kunna användas i en applikation. Inte heller optimering av skalning för molntjänst kommer att ske då detta kräver flera radarenheter och applikationer för testning och optimering.
+
+I en framtida version är det önskvärt med ett \ac{SDK} för att underlätta utveckling av en applikation. Detta kommer inte att utvecklas inom ramen för detta projekt.

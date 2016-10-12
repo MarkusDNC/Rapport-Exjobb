@@ -1,0 +1,122 @@
+\chapter{METOD}
+\thispagestyle{fancy}
+\section{Webbsystem}
+
+\subsection{Symfony}
+För att utveckla en webbapplikation där användaren kan administrera sina radarapplikationer och radarenheter finns en rad olika hjälpmedel som accelererar utvecklingen av denna. Symfony\footnote{\url{www.symfony.com} [2016-10-12]} är ett sådant hjälpmedel, ett \acs{WAF} som låter utvecklaren att fokusera på att skriva bra applikationskod istället för att lägga resurser på underliggande detaljer och säkerhetsfrågor. Många av Symfonys komponenter förekommer i andra populära \acs{WAF}:s såsom Drupal och Laravel. Ramverket öppnar också upp för tredjepartskomponenter i form av s.k bundles. Ett exempel på en sådan är Doctrines \ac{ORM}\footnote{\url{www.doctrine-project.org/projects/orm.html} [2016-10-12]} som har använts frekvent i projektet för integration mot databasen.
+
+% \textbf{Kod och mönster}
+\subsection*{Kod och mönster}
+Symfony använder sig av välkända designmönster, där bland andra \ac{MVC} spelar en viktig roll. Nedan följer ett exempel för en s.k Controller som visar index-sidan i en webbapplikation:
+\newpage
+
+\begin{lstlisting}[caption=Exempel på kod i Symfony, label=symfony]
+<?php
+
+class ExampleController extends Controller
+{
+    /**
+    * @Route("/index", name="index")
+    */
+    public function indexAction(Request $request)
+    {
+        return $this->render(":public:index.html.twig");
+    }
+}
+\end{lstlisting}
+Ovan ser vi även användandet av annoteringar för att specificera sökväg till index-sidan på webbservern, om www.example.com pekar mot servern skulle man nå index med www.example.com/index. Annoteringar används flitigt när webbapplikationer i Symfony skapas, ett ytterligare intressant exempel är i användadet av nämnda Doctrine \acs{ORM} för skapandet av en tabell med två (2) kolumner i databasen:
+
+\begin{lstlisting}[caption=Exempel på kod i Symfony, label=symfony]
+<?php
+
+/**
+* @ORM\Table(name="users")
+* @ORM\Entity
+*/
+class User
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(name="first_name", type="string")
+     */
+    private $firstName;
+    
+}
+\end{lstlisting}
+\subsection*{Säkerhet}
+Vid implementation av webbapplikationen har säkerheten ej åsidosatts. Det finns 3 huvudkomponenter som här är viktiga:
+\begin{itemize}
+\item Symfony
+\item Doctrine \acs{ORM}
+\item Twig\footnote{\url{www.twig.sensiolabs.org} [2016-10-12]}
+\end{itemize}
+
+
+
+
+
+\newpage
+\section{ZeroMQ}
+ZeroMQ ($\oldemptyset$MQ)\cite{ZeroMQ-book} är ett meddelandeorienterat bibliotek som underlättar för användaren att programatiskt hantera sockets inom meddelandedistribution mellan system. Det har stöd för att skicka meddelande på flera olika sätt som in-process, inter-process, \acs{TCP} och multicast.
+
+Följande beskrivning av kommunikationsmönster (Messaging Patterns) återfinns i iMatix, \emph{Code Connected Volume 1}, s. 40\cite{ZeroMQ-book}.\\
+
+De inbyggda kommunikationsmönster i $\oldemptyset$MQ är:
+\begin{itemize}
+    \item{\textbf{Request-Reply,} som kopplar samman ett set av clienter till ett set av tjänster. Detta är en}
+    \item{\textbf{Publish-Subscribe}, som kopplar samman en samling av utgivare till en samling av prenumeranter. Detta är ett datadistributionsmönster.}
+    \item{\textbf{Pipeline}, som kopplar samman noder i ett (eng. fan-in/fan-out pattern) som kan ha flera steg och slingor.}
+    \item{\textbf{Exclusive pair}, som som enbart kopplar samman två sockets. Detta är ett mönster för att koppla samman två trådar i en process, inte att förväxla med ''normala'' par av sockets.}
+
+\end{itemize}
+\newpage
+Nedan följer exempel på kod för meddelande mellan server och klient i ZeroMQ skriven i C.
+
+\begin{lstlisting}[caption=Exempel på serverkod i $\oldemptyset$MQ, label=hw-server]
+int main (void)
+{
+    //  Socket to talk to clients
+    void *context = zmq_ctx_new ();
+    void *responder = zmq_socket (context, ZMQ_REP);
+    int rc = zmq_bind (responder, "tcp://*:5555");
+    assert (rc == 0);
+
+    while (1) {
+        char buffer [10];
+        zmq_recv (responder, buffer, 10, 0);
+        printf ("Received Hello\n");
+        sleep (1);          
+        //  Do some 'work'
+        zmq_send (responder, "World", 5, 0);
+    }
+    return 0;
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Exempel på klientkod i $\oldemptyset$MQ, label=hw-server]
+int main (void)
+{
+    printf ("Connecting to hello world server…\n");
+    void *context = zmq_ctx_new ();
+    void *requester = zmq_socket (context, ZMQ_REQ);
+    zmq_connect (requester, "tcp://localhost:5555");
+
+    int request_nbr;
+    for (request_nbr = 0; request_nbr != 10; request_nbr++) {
+        char buffer [10];
+        printf ("Sending Hello %d…\n", request_nbr);
+        zmq_send (requester, "Hello", 5, 0);
+        zmq_recv (requester, buffer, 10, 0);
+        printf ("Received World %d\n", request_nbr);
+    }
+    zmq_close (requester);
+    zmq_ctx_destroy (context);
+    return 0;
+}
+\end{lstlisting}

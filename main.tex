@@ -1,0 +1,251 @@
+% ****** Preemble ******
+\documentclass[12pt,a4paper,twoside,openright]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[swedish]{babel}
+
+\usepackage[a4paper,bindingoffset=1.5cm,margin=3cm,includeheadfoot,]{geometry}
+
+% För bilder
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{wrapfig}
+\usepackage[font=small]{caption} % Storlek på caption
+
+% För php kod
+\usepackage{listings,xcolor}
+\usepackage{inconsolata}
+
+\definecolor{dkgreen}{rgb}{0,.6,0}
+\definecolor{dkblue}{rgb}{0,0,.6}
+\definecolor{dkyellow}{cmyk}{0,0,.8,.3}
+
+\lstset{
+  language        = php,
+  basicstyle      = \footnotesize\ttfamily,
+  keywordstyle    = \color{dkblue},
+  stringstyle     = \color{red},
+  identifierstyle = \color{dkgreen},
+  commentstyle    = \color{gray},
+  emph            =[1]{php},
+  emphstyle       =[1]\color{black},
+  emph            =[2]{if,and,or,else},
+  emphstyle       =[2]\color{dkyellow}}
+  
+\renewcommand{\lstlistingname}{Kod}
+
+% Font
+\usepackage[sc]{mathpazo}
+\linespread{1.05} % Palladio needs more leading (space between lines)
+\usepackage[T1]{fontenc}
+
+\usepackage{amssymb}
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+% Design av kapitelrubrik och numrering
+% \usepackage[hcentering,textwidth=150mm,textheight=225mm]{geometry}
+\usepackage{fancyhdr}
+\usepackage[Bjornstrup]{fncychap}
+\ChTitleVar{\large\ChTitleUpperCase}
+
+% Blockquotes
+\usepackage[autostyle]{csquotes}  
+
+\usepackage{titlesec}
+
+\titleformat{\section}
+{\normalfont\normalsize\uppercase}{\thesection}{1em}{}
+\titleformat{\subsection}
+{\itshape}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+{\normalfont\small}{\thesubsubsection}{1em}{}
+
+% Definerar färger
+\usepackage{xcolor}
+\definecolor{acblue}{RGB}{85,123,206}
+\definecolor{urlred}{RGB}{130,0,0}
+\definecolor{citegreen}{RGB}{0,130,0}
+
+% Akronymer
+\usepackage[printonlyused]{acronym}
+% Använd argumentet <withpage> för att skriva ut nummer på sida som det första gången används på.
+
+
+% Prickad linje för Sections i innehållsförteckningen
+\usepackage{tocloft}
+
+%För placering av figurer
+\usepackage{float}
+
+%För justering av marginaler
+% \usepackage{geometry}
+
+%För visa kod i text
+\usepackage{listings}
+
+% För bilder
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{wrapfig}
+\usepackage[font=small]{caption} % Storlek på caption
+
+% Används för url och radbrytning i långa url
+\usepackage[hyphens]{url} 
+\usepackage[hidelinks,colorlinks=true,linktocpage=true]{hyperref} % Länkar i TOC
+\hypersetup{
+    colorlinks=true,
+    linkcolor=acblue,
+    filecolor=magenta,      
+    urlcolor=urlred,
+    citecolor=citegreen,
+}
+\usepackage[hyphenbreaks]{breakurl}
+
+ % För flowcharts
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows, calc, shapes, arrows, shapes.multipart}
+
+% Liten font och centrerad text i caption 
+\usepackage[font=small, justification=centering]{caption}
+
+% Länkar för TOC
+\usepackage[hidelinks]{hyperref}
+
+% Sidhuvud och sidfot
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\setlength{\headheight}{33pt}
+\setlength{\columnsep}{1cm}
+\fancyhead{}
+\fancyhead[RO]{\date{April 2016}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.25pt}
+\fancyfoot[CO]{\thepage}
+
+%Korrekt avstavning
+\usepackage[T1]{fontenc}
+
+%Matematiska formler
+\usepackage{amsmath}
+
+
+
+
+% ******* Start på dokumentet ******
+
+\begin{document}\sloppy
+
+\begin{titlepage}
+    \centering
+    \vfill
+    {\Huge{
+        Examensarbete}\\
+        \vspace{1cm}
+        \Large{Raytelligent Cloud\\}
+        \vskip1cm
+        Markus Axelsson\\
+        Oskar Lundgren\\
+        \vspace{5mm}
+        December 2016
+    }    
+    \vfill
+    % Includera grafik
+    \vfill
+
+    \begin{center}
+        Handledare: Urban Bilstrup\\
+        Akademin för informationsteknologi\\
+        Halmstad Högskola
+    \end{center}
+\end{titlepage}
+\thispagestyle{empty}
+
+\newpage\phantom{}
+\thispagestyle{empty}
+
+\newpage\phantom{}
+\thispagestyle{empty}
+
+\newpage\phantom{}
+\thispagestyle{empty}
+
+\clearpage
+\onecolumn
+\pagenumbering{roman}
+\section*{Förord}
+Denna rapport är resultatet av ett examensarbete på 15 högskolepoäng vilket utförs på halvfart under höstterminen 2016 för Raytelligence ABs räkning. Examensarbetet ingår som ett avslutande moment på vår utbildning till dataingenjörer på Högskolan i Halmstad.\\
+\newline
+Vi vill tacka Pelle på Raytelligence och Swedish Adrenaline för möjligheten och hans frikostiga stöd i utvecklandet av detta projekt.\\
+\newline
+Vi vill även tacka vår handledare Urban Bilstrup för hans stöd och vägledning vilket har varit mycket uppskattat under den tid som projektet har fortlöpt.\\
+\newline
+Markus Axelsson och Oskar Lundgren\\
+Halmstad 2016
+
+\newpage
+\newpage\null\newpage
+%\setcounter{page}{5}
+\section*{Sammanfattning}
+\subsection*{Abstract}
+TODO
+
+\subsection*{Sammanfattning}
+TODO
+
+\newpage\phantom{}
+
+\newpage
+%\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}} % Prickad linje
+\newgeometry{top=3cm, bottom=3cm}
+\tableofcontents
+\thispagestyle{fancy}
+
+\newpage\phantom{}
+
+\restoregeometry
+
+\section*{Ordförklaringar}
+\addcontentsline{toc}{section}{Ordförklaringar}
+\begin{description}
+    \item[End point]{- Den programmerade kopplingen som radarenheten har för stunden. Värdet vid leverans är addressen till Raytelligence molntjänst.}
+    \item[Gränssnitt]{- }
+    \item[Slutanvändare]{- Forskare, ingenjör eller utvecklare med kunskaper inom programmering och signalbehandling}
+    \item[Virtual Machine]{- todo}
+    
+\end{description}
+
+\newpage
+\chapter*{Akrynomer}
+\addcontentsline{toc}{section}{Akronymer}
+\begin{acronym}
+    \acro{API}{Application Programming Interface}  
+    \acro{CSRF}{Cross Site Request Forgery}
+    \acro{IaaS}{Infrastructure as a Service}
+    \acro{IoT}{Internet of Things}
+    \acro{ISM}{Industrial, Scientific and Medical}
+    \acro{MVC}{Model View controller}
+    \acro{ORM}{Object Relational Mapper}
+    \acro{PaaS}{Plattform as a Service}
+    \acro{SaaS}{Software as a Service}
+    \acro{SDK}{Software Development Kit}
+    \acro{TCP}{Transmission Control Protocol}
+    \acro{WAF}{Web Application Framework}
+    \acro{XSS}{Cross Site Scripting}
+\end{acronym}
+
+
+
+\newpage\phantom{}
+
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+%Inkluderar de olika kapitlen
+\include{inledning}
+\include{bakgrund}
+\include{teori}
+\include{metod}
+\include{bibliografi}
+
+
+\end{document}
